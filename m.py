@@ -1,7 +1,6 @@
 import socks
 import socket
 from socket import timeout
-import requests
 import urllib.request
 import json
 import datetime
@@ -15,8 +14,9 @@ referrer = "5fb12dd5-2cd6-474a-ae58-d6bd5ec2f51b"
 _socket = socket.socket
 def getProxy():
     try:
-        req         = requests.get('https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=4000&country=all')
-        proxy_list = req.text
+        req         = urllib.request.Request('https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=5000&country=all')
+        response    = urllib.request.urlopen(req)
+        proxy_list = response.read().decode('utf-8')
         return proxy_list.split('\r\n')
     except Exception as error: 
         print(error)
@@ -58,7 +58,7 @@ def run(proxy_host):
         else:
             socket.socket = _socket
         req         = urllib.request.Request(url, data, headers)
-        response    = urllib.request.urlopen(req,timeout=5)
+        response    = urllib.request.urlopen(req,timeout=3)
         status_code = response.getcode()    
         # print(req.data)
         return status_code
