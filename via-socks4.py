@@ -13,7 +13,7 @@ import sys
 def getProxy():
     try:
         socket.socket = _socket
-        req         = urllib.request.Request('https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=100&country=all&ssl=all&anonymity=all')
+        req         = urllib.request.Request('https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks4&timeout=150&country=all')
         response    = urllib.request.urlopen(req)
         proxy_list = response.read().decode('utf-8')
         return proxy_list.split('\r\n')
@@ -51,7 +51,7 @@ def run(proxy_host,t=0):
                     }
         if(proxy_host != "" and t == 0):
             pro = proxy_host.split(':')
-            socks.set_default_proxy(socks.HTTP, pro[0], int(pro[1]))
+            socks.set_default_proxy(socks.SOCKS4, pro[0], int(pro[1]))
             socket.socket = socks.socksocket
         elif proxy_host == "" and t == 0:
             socket.socket = _socket
@@ -101,7 +101,7 @@ def loop(pl):
     return wl
 def log(p):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(f"Boots warp+ id \"{referrer}\" via HTTP")
+    print(f"Boots warp+ id \"{referrer}\" via Socks4")
     if p == '': 
         p = 'Non proxy'
         #index of proxy
