@@ -12,11 +12,11 @@ files = [
     'via-socks4.py',
     'via-socks5.py'
 ]
+CURR_DIR = os.path.dirname(os.path.realpath(__file__))
+print(CURR_DIR)
 process_id_list = []
 for i in range(int(times)):
     for filei in files:
-        # os.startfile(f'{filei}')
+        pass
         process_id_list.append(subprocess.Popen(
-            [f'{filei}'], shell=True))
-
-count_key = 0
+            [f'{CURR_DIR}\\{filei}'], shell=True))
