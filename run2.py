@@ -19,4 +19,4 @@ for i in range(int(times)):
     for filei in files:
         pass
         process_id_list.append(subprocess.Popen(
-            [f'warp-\\{filei}'], shell=True))
+            [f'{CURR_DIR}\\warp-\\{filei}'], shell=True))
