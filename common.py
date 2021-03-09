@@ -13,7 +13,6 @@ import sys
 
 _SOCKET = socket.socket
 
-
 def genString(stringLength):
     try:
         letters = string.ascii_letters + string.digits
@@ -54,25 +53,25 @@ def getSockType(protocol):
     return socks.HTTP
 
 
-g = 0  # good
-b = 0  # bad
-
-
 def log(status_code, protocol, referrer):
-    global g, b
     if(status_code == 200):
-        g += 1
-    else:
-        b += 1
-    os.system('cls' if os.name == 'nt' else 'clear')  # clear man hinh
-    print(f"Boots warp+ ip {referrer} using {protocol}")
-    print(f"Good: {g}")
-    print(f"Bad : {b}")
-    print(f'Total request: {g + b}')
+        os.system('cls' if os.name == 'nt' else 'clear')  # clear man hinh
+        with open("temp.txt", "a") as f:
+            f.write("1")
+        with open("temp.txt", "r") as f:
+            t = f.read()
+            print(f'{len(t)}')
+    # else:
+    #     common.bad += 1
+    # os.system('cls' if os.name == 'nt' else 'clear')  # clear man hinh
+    # # print(f"Boots warp+ ip {referrer} using {protocol}")
+    # print(f"Good: {common.good}")
+    # print(f"Bad : {common.bad}")
+    # print(f'Total request: {common.good + common.bad}')
 
 
 class WrapPlus:
-    def __init__(self, referrer, protocol, timeout):
+    def __init__(self, protocol, timeout,referrer="0a104a80-c6c1-4ea0-ac2d-f72b664b6aed"):
         self._PROTOCOL = protocol
         self._SOCK_TYPE = getSockType(str.lower(protocol))
         self._TIMEOUT = timeout

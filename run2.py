@@ -17,6 +17,5 @@ print(CURR_DIR)
 process_id_list = []
 for i in range(int(times)):
     for filei in files:
-        pass
-        process_id_list.append(subprocess.Popen(
-            [f'{CURR_DIR}/{filei}'], shell=True))
+        subprocess.Popen(
+            [f'{CURR_DIR}{filei}'], shell=True)
